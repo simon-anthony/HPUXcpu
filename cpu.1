@@ -1,0 +1,99 @@
+.\" @(#)cpu.1	1.5
+.fp 1 R
+.fp 2 I
+.fp 3 B
+.fp 4 BI
+.fp 5 CO
+.fp 6 CI
+.fp 7 CB
+.nr X
+.TH cpu 1 "05 Jun 2001" ""
+.SH NAME
+cpu \- show CPU activity
+.SH SYNOPSIS
+\f3cpu\f1
+[\f3-h\f1] [\f3-i \f2interval\f1] [\f3-s\f1]
+.SH DESCRIPTION
+.IX "cpu"
+.P
+\f3cpu\f1 displays graphically (in a character terminal) CPU activity.
+.P
+User and system time per processor is shown in a bar graph for each processor.
+.P
+A number of options are available from the screen labelled function keys
+(or by pressing the first letter of the function):
+.RS
+.IP \f3HELP\f1 10
+Displays help, if available.
+.IP \f3MEM\f1 10
+Show, graphically, the memory usage.
+.IP \f3TOP\f1 10
+Show the top cpu consuming processes. The argument vector displayed is not
+truncated and is only restricted by the width of the screen.
+.IP \f3STATS\f1 10
+Show selected statistics.
+.IP \f3INFO\f1 10
+Display information on each CPU (in a scrollable window).
+.IP \f3HIST\f1 10
+Show an aggregate histogram of all CPU activity.
+.RE
+.P
+Each function key acts as a toggle, that is, pressing \f3STATS\f1 once displays
+the statistics page, pressing it again removes the page. Similarly, pressing
+\f3STATS\f1 once displays the statistics window, pressing \f3TOP\f1 replaces
+it with the top processes window.
+.P
+If the terminal supports special characters (alternate character set) then
+these will be used to draw the lines, boxes and so on. If not substitutes 
+will be used.
+.SH OPTIONS
+.TP
+\f3\-i \f2interval\f1
+Interval between samples/refreshes.
+.TP
+\f3\-h\f1
+Hide CPUs disabled with ICOD.
+.TP
+\f3\-s\f1
+Split CPUs into two windows (automatic if greater than 20 cpus.)
+.SH EXAMPLES
+.P
+The following shows output as a result of running the command:
+.nf
+.sp
+\f5$ \f7cpu\f1
+.fi
+.RE
+.nf
+.ft 7
+\f3ukihjd17 9000/800/rp4440                               Processors:  8/8\fP
+.ft 5
+ load average: 0.10, 0.12, 0.12
+  0:==--
+  1:=----
+  2:=----
+  3:--
+  4:===----------------------------------------------------------------
+  5:===----
+  6:
+  7:=-
++-----------------------------------------------------------------------+
+|CPU   PID  PPID User       Size    RSS  State    Time   %CPU Cmd 991   |
+|  0 12468     1 oratrn3   1771M  8472K  SLEEP    0:13  13.35 oracleTRN3|
+|  2 12667 14696 oratrn1    701M 51752K    RUN    0:02  11.74 java -serv|
+|  2 14747     1 oratrn1   1801M  6424K  SLEEP    6:59   4.26 oracleTRN1|
+|  4 12135     1 oratrn3   1771M  9496K    RUN    0:05   2.42 oracleTRN3|
+|  5 14189     1 oratrn1   1673M  5400K  SLEEP    4:10   2.15 oracleTRN1|
+|  1    43     0 root     16032K 16032K    RUN 1879:17   1.71 vxfsd     |
+|  0 15490 15429 root      7372K   258M    RUN  508:07   1.64 caiUxOs ru|
+|  2 12146     1 oratrn3   1771M  8472K  SLEEP    0:15   1.24 oracleTRN3|
+|  1 12661     1 oratrn3   1769M  7448K  SLEEP    0:00   1.16 oracleTRN3|
+|  0 23528 23482 oratrn3   1233M   554M    RUN    0:54   0.79 java -serv|
++-----------------------------------------------------------------------+
+ \f3HELP \f1|       |  \f3MEM  \f1|  \f3TOP  \f1|           | \f3STATS \f1| \f3INFO \f1| \f3HIST  \f1|  \f3QUIT
+.fi
+.SH AUTHOR
+Simon Anthony (santhony@lycos.co.uk)
+.SH SEE ALSO
+.BR glance (1),
+.BR top (1)
